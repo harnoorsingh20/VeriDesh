@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeriDesh - AI-Powered Anti-Counterfeiting Platform</title>
+  <meta name="description" content="Manufacturers register products. Gemini AI detects fraud in real time. Consumers verify in under 1 second.">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="brand-dot"></div>
+      VeriDesh
+    </a>
+    <div class="nav-actions">
+      <a href="scan.html" class="btn btn-primary">Scan Product</a>
+      <a href="admin.html" class="btn btn-outline">Admin</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-pill">AI-Powered Anti-Counterfeiting Platform</div>
+      <h1>Protect Your Brand from <span class="text-orange">Counterfeiting</span></h1>
+      <p>Manufacturers register products. Gemini AI detects fraud in real time. Consumers verify in under 1 second.</p>
+      
+      <div class="hero-actions">
+        <a href="scan.html" class="btn btn-white">Scan a Product</a>
+        <a href="admin.html" class="btn btn-transparent-outline">Manufacturer Login</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <h3>Rs 1.5L Cr</h3>
+          <p>Counterfeit Market</p>
+        </div>
+        <div class="stat-card">
+          <h3>Under 1 Sec</h3>
+          <p>Verification Speed</p>
+        </div>
+        <div class="stat-card">
+          <h3>Gemini AI</h3>
+          <p>Fraud Detection</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="how-it-works container">
+    <h2 class="text-center" style="font-size: 36px; color: var(--navy);">How VeriDesh Works</h2>
+    
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h4>Manufacturer Registers</h4>
+        <p>Upload products via dashboard or CSV</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h4>Tags Embedded</h4>
+        <p>NFC chips or crypto QR on packaging</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h4>Consumer Scans</h4>
+        <p>Any smartphone tap or QR scan</p>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <h4>AI Verifies</h4>
+        <p>Gemini analyzes and returns result instantly</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center" style="font-size: 36px; color: var(--navy);">Why Manufacturers Choose VeriDesh</h2>
+      
+      <div class="features-grid">
+        <div class="card feature-card">
+          <div class="feature-icon"><span class="material-icons">security</span></div>
+          <h4>Cryptographic Authentication</h4>
+          <p>ECC-encrypted NFC chips generate unique signature every scan. Cloning impossible.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon"><span class="material-icons">psychology</span></div>
+          <h4>Gemini AI Fraud Engine</h4>
+          <p>Detects stolen chips, geographic anomalies, and supply chain gaps in milliseconds.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon"><span class="material-icons">insert_chart</span></div>
+          <h4>Real-Time Dashboard</h4>
+          <p>Live fraud heatmaps, batch blacklisting, FSSAI compliance reports auto-generated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="container grid">
+      <div>
+        <h3>12,000+</h3>
+        <p>Potential Brand Customers</p>
+      </div>
+      <div>
+        <h3>Rs 3,000 Cr</h3>
+        <p>Lost by FMCG brands annually</p>
+      </div>
+      <div>
+        <h3>1 Second</h3>
+        <p>Average verification time</p>
+      </div>
+      <div>
+        <h3>100%</h3>
+        <p>Cryptographic accuracy</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div class="brand-dot" style="background:var(--white);"></div>
+        VeriDesh
+      </div>
+      <p>Fighting counterfeits with AI technology</p>
+      <p style="font-size: 14px; opacity: 0.5;">&copy; 2026 VeriDesh Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

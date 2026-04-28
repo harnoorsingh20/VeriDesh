@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supply Chain Tracker - VeriDesh</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="admin.html" class="nav-brand" style="font-size:20px;">
+      <span class="material-icons">arrow_back</span>
+      <div class="brand-dot" style="margin-left:8px;"></div>
+      Supply Chain Tracker
+    </a>
+  </nav>
+
+  <section class="container" style="padding-top: 40px; padding-bottom: 80px; min-height:calc(100vh - 80px);">
+    
+    <div class="card" style="max-width:600px; margin:0 auto 40px;">
+      <label style="display:block; margin-bottom:8px; font-weight:500;">Enter Product ID to track supply chain</label>
+      <div style="display:flex; gap:16px;">
+        <div class="input-group" style="margin-bottom:0; flex:1;">
+          <span class="material-icons">search</span>
+          <input type="text" id="supplySearchInput" placeholder="e.g. PROD001 or AGRI001">
+        </div>
+        <button class="btn btn-primary" id="trackSupplyBtn">Track</button>
+      </div>
+    </div>
+
+    <div id="supplyTimelineContent">
+      <!-- Injected via JS -->
+      <div style="text-align:center; color:var(--muted); padding:40px;">
+        <span class="material-icons" style="font-size:48px; opacity:0.5; margin-bottom:16px;">local_shipping</span>
+        <p>Enter a product ID above to view its supply chain journey and AI risk analysis.</p>
+        <p style="font-size:13px; margin-top:8px;">Try PROD001 (Safe) or AGRI001 (Gap detected)</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <h3 style="color:var(--navy); margin-bottom:8px;" id="loadingText">Analyzing Supply Chain...</h3>
+  </div>
+  
+  <div id="toast"></div>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

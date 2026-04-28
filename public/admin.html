@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - VeriDesh</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- Password Gate -->
+  <div id="loginGate">
+    <div class="login-box">
+      <h2 style="color:var(--navy); margin-bottom:8px;">Manufacturer Login</h2>
+      <p style="color:var(--muted); margin-bottom:24px; font-size:14px;">Please enter your admin password.</p>
+      <input type="password" id="adminPassword" placeholder="Password" style="width:100%; padding:12px 16px; border:1px solid #E2E8F0; border-radius:8px; font-family:'Inter', sans-serif; font-size:16px; margin-bottom:24px; outline:none;">
+      <button class="btn btn-primary btn-full" id="loginBtn">Access Dashboard</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-dot" style="background:var(--white); display:inline-block; margin-right:8px;"></div>VeriDesh
+      </div>
+      <div class="nav-menu">
+        <div class="nav-item active" data-target="view-dashboard">
+          <span class="material-icons">grid_view</span> Dashboard
+        </div>
+        <div class="nav-item" data-target="view-add">
+          <span class="material-icons">add_box</span> Add Product
+        </div>
+        <div class="nav-item" data-target="view-all">
+          <span class="material-icons">list_alt</span> All Products
+        </div>
+        <div class="nav-item" data-target="view-alerts">
+          <span class="material-icons">warning</span> Fraud Alerts
+        </div>
+        <a href="supply.html" style="text-decoration:none;">
+          <div class="nav-item">
+            <span class="material-icons">local_shipping</span> Supply Chain
+          </div>
+        </a>
+      </div>
+      <div class="nav-item" data-target="logout" style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
+        <span class="material-icons">logout</span> Logout
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- DASHBOARD VIEW -->
+      <section id="view-dashboard" class="view-section active">
+        <h2 style="font-size:28px; color:var(--navy); margin-bottom:24px;">Good morning, Admin</h2>
+        
+        <div class="stat-cards">
+          <div class="card dash-stat">
+            <div class="dash-stat-icon blue"><span class="material-icons">inventory_2</span></div>
+            <div>
+              <p style="color:var(--muted); font-size:14px;">Total Products</p>
+              <h3 style="font-size:24px;" id="statTotalProducts">-</h3>
+            </div>
+          </div>
+          <div class="card dash-stat">
+            <div class="dash-stat-icon green"><span class="material-icons">verified</span></div>
+            <div>
+              <p style="color:var(--muted); font-size:14px;">Genuine</p>
+              <h3 style="font-size:24px;" id="statGenuine">-</h3>
+            </div>
+          </div>
+          <div class="card dash-stat">
+            <div class="dash-stat-icon red"><span class="material-icons">gpp_bad</span></div>
+            <div>
+              <p style="color:var(--muted); font-size:14px;">Fraud Alerts Today</p>
+              <h3 style="font-size:24px;">2</h3>
+            </div>
+          </div>
+          <div class="card dash-stat">
+            <div class="dash-stat-icon orange"><span class="material-icons">qr_code_scanner</span></div>
+            <div>
+              <p style="color:var(--muted); font-size:14px;">Scans Today</p>
+              <h3 style="font-size:24px;" id="statScans">-</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <h3 style="margin-bottom:16px; font-size:18px; color:var(--navy);">Recent Fraud Alerts</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Product</th>
+                <th>Alert Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10:42 AM</td>
+                <td><strong>Suspicious Medicine</strong></td>
+                <td><span class="badge badge-red">Unregistered</span></td>
+                <td><button class="btn btn-outline" style="padding:6px 12px; font-size:13px;">View</button></td>
+              </tr>
+              <tr>
+                <td>09:15 AM</td>
+                <td><strong>Wheat Seeds Pack</strong></td>
+                <td><span class="badge badge-orange">Supply Chain Gap</span></td>
+                <td><button class="btn btn-outline" style="padding:6px 12px; font-size:13px;">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ADD PRODUCT VIEW -->
+      <section id="view-add" class="view-section">
+        <h2 style="font-size:24px; color:var(--navy); margin-bottom:24px;">Add New Product</h2>
+        <div class="card">
+          <form id="addProductForm">
+            <div class="form-grid">
+              <div>
+                <div class="form-group">
+                  <label>Product ID</label>
+                  <input type="text" id="addId" required placeholder="e.g. PROD003">
+                </div>
+                <div class="form-group">
+                  <label>Product Name</label>
+                  <input type="text" id="addName" required placeholder="e.g. Premium Basmati Rice">
+                </div>
+                <div class="form-group">
+                  <label>Manufacturer</label>
+                  <input type="text" id="addManufacturer" required placeholder="Company Name">
+                </div>
+              </div>
+              <div>
+                <div class="form-group">
+                  <label>Category</label>
+                  <select id="addCategory">
+                    <option>FMCG</option>
+                    <option>Medicine</option>
+                    <option>Agriculture</option>
+                    <option>Electronics</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Batch Number</label>
+                  <input type="text" id="addBatch" required placeholder="e.g. BATCH2024">
+                </div>
+                <div class="form-group">
+                  <label>Expiry Date</label>
+                  <input type="date" id="addExpiry">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom:32px;">
+              <label>Status (Genuine / Flagged)</label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="addGenuine" class="toggle-input" checked>
+                <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                <span style="font-size:14px; color:var(--muted);">Set as Genuine</span>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">Add to VeriDesh</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ALL PRODUCTS VIEW -->
+      <section id="view-all" class="view-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:24px; color:var(--navy);">All Products</h2>
+          <button class="btn btn-outline"><span class="material-icons">upload</span> Upload CSV</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Scans</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- JS Injected -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FRAUD ALERTS VIEW -->
+      <section id="view-alerts" class="view-section">
+        <h2 style="font-size:24px; color:var(--navy); margin-bottom:24px;">Fraud Alerts & Anomalies</h2>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+                <span class="badge badge-red">Unregistered Product</span>
+                <span style="color:var(--muted); font-size:13px;">Today, 10:42 AM</span>
+              </div>
+              <h3 style="font-size:18px; margin-bottom:4px;">Suspicious Medicine (ID: FAKE001)</h3>
+              <p style="color:var(--muted); font-size:14px; margin-bottom:12px;">Scan location: Delhi, India</p>
+              
+              <div class="ai-card" style="margin-top:0; padding:16px; background:var(--light-red); border-color:rgba(183, 28, 28, 0.2);">
+                <div style="display:flex; align-items:center; gap:8px; color:var(--red); font-weight:600; margin-bottom:8px;">
+                  <span class="material-icons">auto_awesome</span> Gemini AI Reason
+                </div>
+                <p style="font-size:14px; color:var(--text);">"Product ID not found in any authorized manufacturer registry. High probability of counterfeit item entering supply chain."</p>
+              </div>
+            </div>
+            <button class="btn btn-navy">Blacklist Batch</button>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+  
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <h3 style="color:var(--navy); margin-bottom:8px;" id="loadingText">Processing...</h3>
+  </div>
+  
+  <div id="toast"></div>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
