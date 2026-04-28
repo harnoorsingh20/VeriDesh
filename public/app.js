@@ -1,5 +1,5 @@
 // app.js
-const GEMINI_API_KEY = "AIzaSyA_KEagEt48nHLn5pQ5I2akHhtJLLSfLrQ";
+const GEMINI_API_KEY = "API key";
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
 let html5QrcodeScanner;
